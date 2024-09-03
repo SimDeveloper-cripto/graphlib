@@ -30,8 +30,7 @@ def run_dev_test():
 
     g.addEdge("A", "B")
     g.addEdge("A", "C")
-    g.addEdge("B", "D")
-    g.addEdge("C", "D")
+    g.addEdge("B", "C")
     g.addEdge("D", "E")
 
     # [START]
@@ -65,5 +64,3 @@ def run_dev_test():
 
 if __name__ == "__main__":
     run_dev_test()
-
-# TODO: COMPLETE ONE ASD EXAM EXERCISE
