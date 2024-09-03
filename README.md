@@ -1,4 +1,4 @@
-# Overview: A Graph in Python
+# A Graph in Python
 
 This is a library representing a data structure called __Graph__, all written in Python. <br />
 The Graph is __non-oriented__ and implemented by __adjacency matrix__. <br />
@@ -6,8 +6,8 @@ __Disclaimer:__ I have used this project in order to allow myself to pass the fa
 
 ## Install Dependencies
 
-- Python: 3.12
-- Pip: 24.0
+- __Python__: 3.12
+- __Pip__: 24.0
 
 ```shell
 pip install networkx matplotlib
