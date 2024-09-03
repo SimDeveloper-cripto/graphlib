@@ -26,6 +26,7 @@ def run_dev_test():
     g.addNode("C")
     g.addNode("D")
     g.addNode("E")
+    g.addNode("F")
 
     g.addEdge("A", "B")
     g.addEdge("A", "C")
@@ -35,28 +36,29 @@ def run_dev_test():
 
     # [START]
 
-    # g.show()     # PRINT GRAPH STRUCTURE
-    g.visualize()  # VISUALIZE THE GRAPH
+    g.show()                                                       # PRINT GRAPH STRUCTURE
 
-
-'''
     print("\n--- MAP DFS:")
-    g.Dfs(map_func=map_visit)  # PERFORM DFS USING MAP
+    g.Dfs(map_func=map_visit)                                      # PERFORM DFS USING MAP
 
     print("\n--- FOLD DFS:")
-    result = g.Dfs(fold_func=fold_sum, acc=0)  # PERFORM DFS USING FOLD
+    result = g.Dfs(fold_func=fold_sum, acc=0)                      # PERFORM DFS USING FOLD
     print(f"\t--- EMPTY MAP RESULT: {result}")
 
     print("\n--- MAP BFS STARTING FROM 'A':")
-    g.Bfs("A", map_func=map_visit)  # PERFORM BFS USING MAP
+    g.Bfs("A", map_func=map_visit)                        # PERFORM BFS USING MAP
 
     print("\n--- FOLD BFS STARTING FROM 'A':")
     node_count = g.Bfs("A", fold_func=fold_count, acc=0)  # PERFORM BFS USING FOLD
     print(f"\t--- NUMBER OF VISITED NODES: {node_count}")
 
-    min_path = g.getMinimumPath("A", "E")
+    min_path = g.getMinimumPath("A", "E")        # GET MINIMUM PATH BETWEEN TWO NODES
     print("\nMINIMUM PATH BETWEEN A & E:", min_path)
-'''
+
+    sccs = g.getSCCs()
+    print("\nSCCS FOUND: ", sccs)                                  # GET SCCs
+
+    g.visualize()                                                  # VISUALIZE THE GRAPH
 
     # [END]
 
@@ -64,6 +66,4 @@ def run_dev_test():
 if __name__ == "__main__":
     run_dev_test()
 
-# TODO: 1. TOPOLOGICAL SORT
-# TODO: 2. SCC
-# TODO: 3. COMPLETE ONE ASD EXAM EXERCISE
+# TODO: COMPLETE ONE ASD EXAM EXERCISE

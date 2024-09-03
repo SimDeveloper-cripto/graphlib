@@ -142,6 +142,17 @@ class Graph:
         self.__node_colors[node] = Color.BLACK
         return acc
 
+    def __DfsCollect(self, node, component):
+        self.__node_colors[node] = Color.GRAY
+        component.append(node)
+
+        index = self.__nodes.index(node)
+        for i, connected in enumerate(self.__matrix[index]):
+            if connected and self.__node_colors[self.__nodes[i]] == Color.WHITE:
+                self.__DfsCollect(self.__nodes[i], component)
+
+        self.__node_colors[node] = Color.BLACK
+
     # DFS WITH BOTH MAP AND FOLD
     def Dfs(self, map_func=None, fold_func=None, acc=None):
         self.__Init()
@@ -200,3 +211,14 @@ class Graph:
 
             self.__node_colors[curr] = Color.BLACK
         return None
+
+    def getSCCs(self):
+        self.__Init()
+
+        sccs = []
+        for node in self.__nodes:
+            if self.__node_colors[node] == Color.WHITE:
+                component = []
+                self.__DfsCollect(node, component)
+                sccs.append(component)
+        return sccs
