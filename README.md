@@ -1,4 +1,4 @@
-# A Graph in Python
+# An UndirectedGraph in Python
 
 This is a library representing a data structure called __Graph__, all written in Python. <br />
 The Graph is __non-oriented__ and implemented by __adjacency matrix__. <br />
@@ -13,15 +13,8 @@ __Disclaimer:__ I have used this project in order to allow myself to pass the fa
 pip install networkx matplotlib
 ```
 
-## Execute on Windows
+## Execute
 
 ```shell
-.\build.bat
-```
-
-## Execute on Linux
-
-```shell
-chmod +x build.sh
-./build.sh
+python3.12 main.py
 ```
