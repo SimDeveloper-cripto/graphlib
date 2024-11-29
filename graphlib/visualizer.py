@@ -35,7 +35,7 @@ def visualizeState(graph):
     font_colors = [b_f_color_map[graph.getCurrentStateOfColors()[node]] for node in node_list]
 
     # DRAW USING __Matplotlib__
-    pos = nx.spring_layout(g)
+    pos = nx.circular_layout(g, scale=0.05)
     fig, ax = plt.subplots()
 
     fig.set_size_inches(8, 6)
@@ -47,8 +47,8 @@ def visualizeState(graph):
         with_labels = True,
         node_color  = node_colors,
         edge_color  = edge_color,
-        node_size   = 2000,
-        font_size   = 15,
+        node_size   = 1000,
+        font_size   = 10,
         font_weight = 'bold',
         edgecolors = font_colors
     )
@@ -65,4 +65,5 @@ def visualizeState(graph):
             va         = 'center'
         )
 
+    plt.tight_layout()
     plt.show()

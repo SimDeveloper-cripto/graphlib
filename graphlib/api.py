@@ -5,6 +5,9 @@ class UndirectedGraph:
     def __init__(self):
         self.__graph = Graph()
 
+    def init(self):
+        self.__graph.Init()
+
     def addNode(self, node):
         self.__graph.addNode(node)
 

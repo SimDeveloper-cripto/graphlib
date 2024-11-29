@@ -2,6 +2,7 @@ from .color import Color
 from collections import deque
 from .visualizer import visualizeState
 
+# TODO: ADD GET_COLOR() FOR THE NODE (THINK ABOUT API)
 
 # NON-ORIENTED GRAPH IMPLEMENTED BY MATRIX
 class Graph:
@@ -10,7 +11,7 @@ class Graph:
         self.__matrix = []       # Adjacency Matrix
         self.__node_colors = {}  # Dictionary to track colors of nodes
 
-    def __Init(self):
+    def Init(self):
         for node in self.__node_colors:
             self.__node_colors[node] = Color.WHITE
 
@@ -102,7 +103,7 @@ class Graph:
 
     # DFS WITH BOTH MAP AND FOLD
     def Dfs(self, map_func=None, fold_func=None, acc=None):
-        self.__Init()
+        self.Init()
         for node in self.__nodes:
             if self.__node_colors[node] == Color.WHITE:
                 acc = self.__DfsVisit(node, map_func, fold_func, acc)
@@ -114,7 +115,7 @@ class Graph:
         if start_node not in self.__nodes:
             return acc
 
-        self.__Init()
+        self.Init()
         queue = [start_node]
         self.__node_colors[start_node] = Color.GRAY
 
@@ -140,7 +141,7 @@ class Graph:
         if start_node not in self.__nodes or end_node not in self.__nodes:
             return None
 
-        self.__Init()
+        self.Init()
         queue = deque([(start_node, [start_node])])  # Tuple of (curr_node, path)
         self.__node_colors[start_node] = Color.GRAY
 
@@ -160,7 +161,7 @@ class Graph:
         return None
 
     def getSCCs(self):
-        self.__Init()
+        self.Init()
 
         sccs = []
         for node in self.__nodes:
