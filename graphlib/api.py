@@ -11,11 +11,14 @@ class UndirectedGraph:
     def addNode(self, node):
         self.__graph.addNode(node)
 
-    def addEdge(self, node1, node2):
-        self.__graph.addEdge(node1, node2)
+    def addEdge(self, node1, node2, weight):
+        self.__graph.addEdge(node1, node2, weight)
 
     def getNodes(self):
         return self.__graph.getNodes()
+
+    def getNodeColor(self, node):
+        return self.__graph.getNodeColor(node)
 
     def dfs(self, map_func=None, fold_func=None, acc=None):
         return self.__graph.Dfs(map_func=map_func, fold_func=fold_func, acc=acc)

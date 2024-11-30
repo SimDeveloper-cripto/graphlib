@@ -1,6 +1,7 @@
 from graphlib import UndirectedGraph
+from graphlib.color import Color
 
-# TODO: COMPLETE TEST SUITE
+# TODO: COMPLETE TEST SUITE #2, #3
 
 # Test Map() function to print visited nodes
 def __map_visit(node):
@@ -29,24 +30,34 @@ def run_dev_test():
     g.addNode("E")
     g.addNode("F")
 
-    g.addEdge("A", "B")
-    g.addEdge("A", "C")
-    g.addEdge("B", "C")
-    g.addEdge("D", "E")
+    g.addEdge("A", "B", 1.0)
+    g.addEdge("A", "C", 2.0)
+    g.addEdge("B", "C", 2.5)
+    g.addEdge("D", "E", 1.5)
 
-    # [TEST #1 START]
+    # [TEST #0 START]
     nodes = g.getNodes()
     if len(nodes) != 6:
-        print("[TEST #1] GET_NODES: FAILED")
-    print("[TEST #1] GET_NODES: PASSED")
+        print("[TEST #0] GET_NODES: FAILED")
+    print("[TEST #0] GET_NODES: PASSED")
+    # [TEST #0 END]
+
+    # [TEST #1 START]
+    color = g.getNodeColor("A")
+    # By accessing a 'random' vertex to check Its color, we can be sure of the correct implementation of:
+    #   - addNode(node)
+    #   - addEdge(node1, node2)
+    if color != Color.WHITE:
+        print("[TEST #1] GET_NODE_COLOR: FAILED")
+    print("[TEST #1] GET_NODE_COLOR: PASSED")
     # [TEST #1 END]
 
     # [TEST #2 START]
-
+    # Dfs with Map() & Fold()
     # [TEST #2 END]
 
     # [TEST #3 START]
-
+    # Bfs with Map() & Fold()
     # [TEST #3 END]
 
     # [TEST #4 START]
@@ -74,5 +85,5 @@ def run_dev_test():
 
     # [TEST #6 START]
     g.show()
-    print("[TEST #6] SHOW GRAPH STATUS: PASSED")
+    print("[TEST #6] SHOW_GRAPH_STATUS: PASSED")
     # [TEST #6 END]

@@ -1,12 +1,13 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+import multiprocessing
 from .color import Color
 
-# TODO: MODIFY LAYOUT
 # TODO: DOCUMENT visualizeState()
+# TODO: ANIMATE AT RUNTIME IF POSSIBLE
 
-def visualizeState(graph):
+def __visualize(graph):
     # USING NETWORKX API
     g = nx.Graph()
 
@@ -15,9 +16,10 @@ def visualizeState(graph):
         g.add_node(node)
 
     for i in range(len(node_list)):
-        for j in range(len(node_list)):
-            if graph.getMatrix()[i][j] == 1:
-                g.add_edge(node_list[i], node_list[j])
+        for j in range(i + 1, len(node_list)):
+            connected, weight = graph.getMatrix()[i][j]
+            if connected == 1:
+                g.add_edge(node_list[i], node_list[j], weight=weight)
 
     color_map = {
         Color.WHITE: 'white',
@@ -53,6 +55,9 @@ def visualizeState(graph):
         edgecolors = font_colors
     )
 
+    edge_labels = nx.get_edge_attributes(g, 'weight')
+    nx.draw_networkx_edge_labels(g, pos, edge_labels=edge_labels)
+
     for node, (x, y) in pos.items():
         ax.text(
             x, y,
@@ -67,3 +72,7 @@ def visualizeState(graph):
 
     plt.tight_layout()
     plt.show()
+
+def visualizeState(graph):
+    process = multiprocessing.Process(target=__visualize, args=(graph,))
+    process.start()
