@@ -96,11 +96,16 @@ class Graph:
         return None
 
     # DFS WITH BOTH MAP AND FOLD
-    def Dfs(self, map_func=None, fold_func=None, acc=None):
+    def Dfs(self, start_node=None, map_func=None, fold_func=None, acc=None):
         self.Init()
-        for node in self.__nodes:
-            if self.__node_colors[node] == Color.WHITE:
-                acc = self.__DfsVisit(node, map_func, fold_func, acc)
+
+        if start_node is None:
+            for node in self.__nodes:
+                if self.__node_colors[node] == Color.WHITE:
+                    acc = self.__DfsVisit(node, map_func, fold_func, acc)
+        else:
+            if start_node in self.__nodes:
+                acc = self.__DfsVisit(start_node, map_func, fold_func, acc)
 
         return acc
 

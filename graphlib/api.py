@@ -20,8 +20,8 @@ class UndirectedGraph:
     def getNodeColor(self, node):
         return self.__graph.getNodeColor(node)
 
-    def dfs(self, map_func=None, fold_func=None, acc=None):
-        return self.__graph.Dfs(map_func=map_func, fold_func=fold_func, acc=acc)
+    def dfs(self, start_node=None, map_func=None, fold_func=None, acc=None):
+        return self.__graph.Dfs(start_node=start_node, map_func=map_func, fold_func=fold_func, acc=acc)
 
     def bfs(self, start_node, map_func=None, fold_func=None, acc=None):
         return self.__graph.Bfs(start_node, map_func=map_func, fold_func=fold_func, acc=acc)

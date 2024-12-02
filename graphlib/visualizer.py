@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import multiprocessing
 from .color import Color
 
-# TODO: DOCUMENT visualizeState()
-# TODO: ANIMATE AT RUNTIME IF POSSIBLE
+# TODO: ADD DOCUMENTATION
 
 def __visualize(graph):
     # USING NETWORKX API

@@ -1,10 +1,10 @@
-from test.test import run_dev_test
+from test.unit_test import run_dev_unit_test
 
 # TODO: ADD DOCUMENTATION INTO Readme.md
-# TODO: DEFINE USER-SPACE FOR LIBRARY USAGE
+# TODO: DEFINE USER-SPACE FOR LIBRARY USAGE WITH EXAMPLES
 
 def run_user_test():
     pass
 
 if __name__ == "__main__":
-    run_dev_test()
+    run_dev_unit_test()
