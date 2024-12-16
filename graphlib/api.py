@@ -32,5 +32,8 @@ class UndirectedGraph:
     def getSCCs(self):
         return self.__graph.getSCCs()
 
+    def dijkstra(self, start_node, end_node):
+        return self.__graph.dijkstra(start_node, end_node)
+
     def show(self):
         self.__graph.showVisualization()

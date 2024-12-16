@@ -1,6 +1,7 @@
 from graphlib import UndirectedGraph
 from graphlib.color import Color
 
+# TODO: DIJKSTRA NEEDS MORE TESTING
 
 def _fold_sum(acc, node):
     if isinstance(node, (int, float)):
@@ -146,3 +147,23 @@ def run_dev_unit_test():
     g.show()
     print("[TEST #6] SHOW_GRAPH_STATE: PASSED")
     # [TEST #6 END]
+
+    # [TEST #7 START]
+    test7_passed = True
+
+    path = g.dijkstra("A", "C")
+    expected_path = ['A', 'C']
+    if path != expected_path:
+        test7_passed = False
+        print(f"\t[DEBUG TEST #7] 'DIJKSTRA' FOUND INVALID PATH: {path}")
+
+    path = g.dijkstra("A", "F")
+    if path is not None:
+        test7_passed = False
+        print(f"\t[DEBUG TEST #7] 'DIJKSTRA' FOUND INVALID PATH, EXPECTED NONE BUT FOUND {path}")
+
+    if test7_passed:
+        print("[TEST #7] DIJKSTRA: PASSED")
+    else:
+        print("[TEST #7] DIJKSTRA: FAILED")
+    # [TEST #7 END]

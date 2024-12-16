@@ -1,8 +1,12 @@
+import heapq
 from .color import Color
 from collections import deque
 from .visualizer import visualizeState
 
-# TODO: DIJKSTRA
+
+# TODO: USE FIBONACCI HEAP INSTEAD OF MIN-HEAP FOR DIJKSTRA
+# TODO: DO I SUBSTITUTE GET_MIN_PATH WITH DIJKSTRA ?
+    # IN THAT CASE, TRY TO ANIMATE
 
 # NON-ORIENTED WEIGHTED GRAPH IMPLEMENTED BY MATRIX
 # To explain the value of the cell indexed by (node1, node2): (0, 0) --> NO CONNECTION, (1, x > 0) --> CONNECTION
@@ -169,6 +173,38 @@ class Graph:
                 self.__DfsCollect(node, component)
                 sccs.append(component)
         return sccs
+
+    def dijkstra(self, source, destination):
+        if source not in self.__nodes or destination not in self.__nodes:
+            return None
+
+        dist = {node: float('inf') for node in self.__nodes}
+        prev = {node: None for node in self.__nodes}
+        dist[source] = 0
+
+        min_heap = []
+        heapq.heappush(min_heap, (0, source))  # (dist, source)
+
+        while min_heap:
+            c_dist, current = heapq.heappop(min_heap)
+            if current == destination:
+                break
+
+            c_index = self.__nodes.index(current)
+            for i, (connected, weight) in enumerate(self.__matrix[c_index]):
+                if connected:
+                    neighbor = self.__nodes[i]
+                    new_dist = dist[current] + weight
+                    if new_dist < dist[neighbor]:
+                        dist[neighbor] = new_dist
+                        prev[neighbor] = current
+                        heapq.heappush(min_heap, (new_dist, neighbor))
+        path = []
+        current = destination
+        while current is not None:
+            path.insert(0, current)
+            current = prev[current]
+        return path if dist[destination] != float('inf') else None
 
     def showVisualization(self):
         visualizeState(self)

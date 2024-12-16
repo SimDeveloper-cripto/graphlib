@@ -4,17 +4,24 @@ This is a library representing a data structure called __Graph__, all written in
 The Graph is __non-oriented__ and __weighted__, implemented by __adjacency matrix__. <br />
 __Disclaimer:__ I have used this project in order to allow myself to pass the famous "algorithms and data structures" exam. <br />
 
-## Install Dependencies
+## Install Dependencies and Execute (PowerShell)
 
 - __Python__: 3.12
 - __Pip__: 24.0
 
+__Warning:__ Probably an upgrade to your pip version would be necessary. <br />
+For first time use, these are the steps to be followed: <br />
+
 ```shell
-pip install networkx matplotlib
+	python -m venv venv
+	.\venv\Scripts\activate.ps1
+	pip install -r requirements.txt
+	python main.py
 ```
 
-## Execute
+__Run the project:__
 
 ```shell
-python3.12 main.py
+	python -m venv venv; .\venv\Scripts\activate.ps1
+	python main.py
 ```
