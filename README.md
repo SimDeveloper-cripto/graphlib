@@ -13,15 +13,15 @@ __Warning:__ Probably an upgrade to your pip version would be necessary. <br />
 For first time use, these are the steps to be followed: <br />
 
 ```shell
-	python -m venv venv
-	.\venv\Scripts\activate.ps1
-	pip install -r requirements.txt
-	python main.py
+python -m venv venv
+.\venv\Scripts\activate.ps1
+pip install -r requirements.txt
+python main.py
 ```
 
 __Run the project:__
 
 ```shell
-	python -m venv venv; .\venv\Scripts\activate.ps1
-	python main.py
+python -m venv venv; .\venv\Scripts\activate.ps1
+python main.py
 ```

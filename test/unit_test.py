@@ -1,7 +1,7 @@
 from graphlib import UndirectedGraph
 from graphlib.color import Color
 
-# TODO: DIJKSTRA NEEDS MORE TESTING
+# TODO: DIJKSTRA'S ALGORITHM NEEDS MORE TESTING
 
 def _fold_sum(acc, node):
     if isinstance(node, (int, float)):
@@ -12,21 +12,36 @@ def _fold_count(acc, node):
     return acc + 1
 
 def run_dev_unit_test():
-    g = UndirectedGraph()
+    g  = UndirectedGraph()
+    g1 = UndirectedGraph()
 
     for node in ['A', 'B', 'C', 'D', 'E', 'F']:
         g.addNode(node)
+
+    for node in ['A', 'B']:
+        g1.addNode(node)
 
     g.addEdge("A", "B", 1.0)
     g.addEdge("A", "C", 1.0)
     g.addEdge("B", "C", 1.0)
     g.addEdge("D", "E", 1.0)
 
+    g1.addEdge("A", "B", 1.0)
+
     # [TEST #0 START]
     nodes = g.getNodes()
     if len(nodes) != 6:
         print("[TEST #0] GET_NODES: FAILED")
     print("[TEST #0] GET_NODES: PASSED")
+
+    g_size  = g.size()
+    if g_size != 10:
+        print("[TEST #0] GET_SIZE: FAILED")
+    print("[TEST #0] GET_SIZE: PASSED")
+
+    if g.empty():
+        print("[TEST #0] IS_EMPTY: FAILED")
+    print("[TEST #0] IS_EMPTY: PASSED")
     # [TEST #0 END]
 
     # [TEST #1 START]
@@ -167,3 +182,13 @@ def run_dev_unit_test():
     else:
         print("[TEST #7] DIJKSTRA: FAILED")
     # [TEST #7 END]
+
+    # [TEST #8 START]
+    nodes = g1.getNodes()
+    assert len(nodes) == 2, "Initial nodes are incorrect"
+    g1.removeNode("A")
+    if g1.getNodes() == ["B"]:
+        print("[TEST #8] REMOVE_NODE: PASSED")
+    else:
+        print("[TEST #8] REMOVE_NODE: FAILED")
+    # [TEST #8 END]

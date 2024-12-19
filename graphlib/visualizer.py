@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import multiprocessing
 from .color import Color
 
-# TODO: ADD DOCUMENTATION
 
 def __visualize(graph):
     # USING NETWORKX API

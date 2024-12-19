@@ -5,8 +5,7 @@ from .visualizer import visualizeState
 
 
 # TODO: USE FIBONACCI HEAP INSTEAD OF MIN-HEAP FOR DIJKSTRA
-# TODO: DO I SUBSTITUTE GET_MIN_PATH WITH DIJKSTRA ?
-    # IN THAT CASE, TRY TO ANIMATE
+# TODO: DO I SUBSTITUTE GET_MIN_PATH WITH DIJKSTRA?
 
 # NON-ORIENTED WEIGHTED GRAPH IMPLEMENTED BY MATRIX
 # To explain the value of the cell indexed by (node1, node2): (0, 0) --> NO CONNECTION, (1, x > 0) --> CONNECTION
@@ -91,6 +90,22 @@ class Graph:
         self.__matrix[index1][index2] = (1, weight)
         self.__matrix[index2][index1] = (1, weight)
 
+    def removeNode(self, node):
+        if node not in self.__nodes:
+            raise ValueError(f"Node '{node}' does not exist in the graph.")
+
+        index = self.__nodes.index(node)
+        self.__nodes.pop(index)
+
+        # Remove the corresponding row from the adjacency matrix
+        self.__matrix.pop(index)
+
+        # Remove the corresponding column from the adjacency matrix
+        for row in self.__matrix:
+            row.pop(index)
+
+        del self.__node_colors[node]
+
     def getNodes(self):
         return self.__nodes
 
@@ -98,6 +113,13 @@ class Graph:
         if node in self.__node_colors:
             return self.__node_colors[node]
         return None
+    
+    def size(self):
+        c_edges = sum(connected for row in self.__matrix for connected, _ in row) // 2
+        return len(self.__nodes) + c_edges
+
+    def empty(self):
+        return len(self.__nodes) == 0 and all(all(not connected for connected, _ in row) for row in self.__matrix)
 
     # DFS WITH BOTH MAP AND FOLD
     def Dfs(self, start_node=None, map_func=None, fold_func=None, acc=None):

@@ -11,8 +11,17 @@ class UndirectedGraph:
     def addNode(self, node):
         self.__graph.addNode(node)
 
+    def removeNode(self, node):
+        self.__graph.removeNode(node)
+
     def addEdge(self, node1, node2, weight):
         self.__graph.addEdge(node1, node2, weight)
+
+    def size(self):
+        return self.__graph.size()
+
+    def empty(self):
+        return self.__graph.empty()
 
     def getNodes(self):
         return self.__graph.getNodes()
