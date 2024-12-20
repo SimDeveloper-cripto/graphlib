@@ -19,9 +19,15 @@ pip install -r requirements.txt
 python main.py
 ```
 
+Before closing the project: <br />
+
+```shell
+deactivate
+```
+
 __Run the project:__
 
 ```shell
-python -m venv venv; .\venv\Scripts\activate.ps1
+.\venv\Scripts\activate.ps1
 python main.py
 ```
