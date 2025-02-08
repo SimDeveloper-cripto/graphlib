@@ -1,7 +1,6 @@
 from graphlib import UndirectedGraph
 from graphlib.color import Color
 
-# TODO: DIJKSTRA'S ALGORITHM NEEDS MORE TESTING
 
 def _fold_sum(acc, node):
     if isinstance(node, (int, float)):

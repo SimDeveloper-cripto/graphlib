@@ -4,8 +4,7 @@ from collections import deque
 from .visualizer import visualizeState
 
 
-# TODO: USE FIBONACCI HEAP INSTEAD OF MIN-HEAP FOR DIJKSTRA
-# TODO: DO I SUBSTITUTE GET_MIN_PATH WITH DIJKSTRA?
+# TODO [DIJKSTRA]: USE FIBONACCI HEAP INSTEAD OF MIN-HEAP
 
 # NON-ORIENTED WEIGHTED GRAPH IMPLEMENTED BY MATRIX
 # To explain the value of the cell indexed by (node1, node2): (0, 0) --> NO CONNECTION, (1, x > 0) --> CONNECTION
