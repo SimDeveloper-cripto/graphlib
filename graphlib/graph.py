@@ -160,7 +160,7 @@ class Graph:
             self.__node_colors[curr] = Color.BLACK
         return acc
 
-    # GET MINUMUM PATH BETWEEN TWO NODES
+    # GET MINIMUM PATH BETWEEN TWO NODES
     def getMinimumPath(self, start_node, end_node):
         if start_node not in self.__nodes or end_node not in self.__nodes:
             return None
