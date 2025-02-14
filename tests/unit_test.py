@@ -91,7 +91,7 @@ def run_dev_unit_test():
             print("\t[DEBUG TEST #2] 'INVALID START NODE' TEST FAILED")
     except Exception as e:
         test2_passed = False
-        print(f"Exception encountered during test #2: {e}")
+        print(f"Exception encountered during tests #2: {e}")
 
     if test2_passed:
         print("[TEST #2] DFS_TEST: PASSED")
@@ -126,7 +126,7 @@ def run_dev_unit_test():
         if visited_nodes != [] or result_invalid is not None:
             print("\t[DEBUG TEST #3] 'INVALID START NODE' TEST FAILED")
     except Exception as e:
-        print(f"Exception encountered during test #3: {e}")
+        print(f"Exception encountered during tests #3: {e}")
 
     if test3_passed:
         print("[TEST #3] BFS_TEST: PASSED")

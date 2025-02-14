@@ -1,3 +1,4 @@
+import platform
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -6,6 +7,8 @@ from .color import Color
 
 
 def __visualize(graph):
+    system = platform.system()
+
     # USING NETWORKX API
     g = nx.Graph()
 
@@ -68,8 +71,12 @@ def __visualize(graph):
             va         = 'center'
         )
 
-    plt.tight_layout()
-    plt.show()
+    if system == "Linux":
+        plt.savefig("output.png")
+        print("[INFO] output.png has been generated!")
+    else:
+        plt.tight_layout()
+        plt.show()
 
 def visualizeState(graph):
     process = multiprocessing.Process(target=__visualize, args=(graph,))
