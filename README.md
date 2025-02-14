@@ -36,6 +36,8 @@ python main.py
 
 ## Execute on Linux
 
+- First of all, create a virtual environment named __linux-venv__.
+
 ```shell
 source linux-venv/bin/activate
 pip install -r requirements.txt
