@@ -1,13 +1,15 @@
 # An UndirectedGraph in Python
 
-This is a library representing a data structure called __Graph__, all written in Python. <br />
+This is a library representing a data structure called __Graph__, all written in Python3. <br />
 The Graph is __non-oriented__ and __weighted__, implemented by __adjacency matrix__. <br />
-__Disclaimer:__ I have used this project in order to allow myself to pass the famous "algorithms and data structures" exam. <br />
+__Disclaimer:__ I have used this project in order to allow myself to pass the famous `algorithms and data structures` exam. <br />
 
 ## Install Dependencies
 
-- __Python__: 3.12
+- __Python__: 3.12 or higher
 - __Pip__: 24.0
+
+Other requirements will be installed thanks to the __requirements.txt__ file. <br />
 
 __Warning:__ Probably an upgrade to your pip version would be necessary. <br />
 For first time use, these are the steps to be followed: <br />
@@ -30,6 +32,7 @@ deactivate
 __Run the project:__
 
 ```shell
+# If the folder "venv" is already there 
 .\venv\Scripts\activate.ps1
 python main.py
 ```
