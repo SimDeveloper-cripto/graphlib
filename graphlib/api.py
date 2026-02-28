@@ -49,7 +49,7 @@ class UndirectedGraph:
         return self.__graph.prim(start_node)
     
     def kruskal(self):
-        pass
+        return self.__graph.kruskal()
 
     def show(self, path=None, edges=None):
         self.__graph.showVisualization(path, edges)

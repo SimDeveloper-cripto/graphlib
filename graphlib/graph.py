@@ -267,7 +267,47 @@ class Graph:
         return mst_edges
 
     def kruskal(self):
-        pass
+        edges = []
+        n = len(self.__nodes)
+        for i in range(n):
+            for j in range(i + 1, n):
+                connected, weight = self.__matrix[i][j]
+                if connected:
+                    edges.append((weight, self.__nodes[i], self.__nodes[j]))
+        
+        edges.sort(key=lambda x: x[0])
+
+        parent = {node: node for node in self.__nodes}
+        rank   = {node: 0    for node in self.__nodes}
+
+        def find(node):
+            if parent[node] != node:
+                parent[node] = find(parent[node])
+            return parent[node]
+
+        def union(u, v):
+            root_u = find(u)
+            root_v = find(v)
+
+            if root_u != root_v:
+                if rank[root_u] < rank[root_v]:
+                    parent[root_u] = root_v
+                elif rank[root_u] > rank[root_v]:
+                    parent[root_v] = root_u
+                else:
+                    parent[root_v] = root_u
+                    rank[root_u] += 1
+                return True
+            return False
+
+        mst_edges = []
+        for weight, u, v in edges:
+            if union(u, v):
+                mst_edges.append((u, v, weight))
+            if len(mst_edges) == n - 1:
+                break
+
+        return mst_edges
 
     def showVisualization(self, path=None, edges=None):
         visualizeState(self, path, edges)

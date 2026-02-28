@@ -13,6 +13,12 @@ def run_prim_test(g):
     print(f"Archi del Minimum Spanning Tree (Prim): {mst_edges}")
     g.show(edges=mst_edges)
 
+def run_kruskal_test(g):
+    mst_edges = g.kruskal()
+
+    print(f"Archi del Minimum Spanning Tree (Kruskal): {mst_edges}")
+    g.show(edges=mst_edges)
+
 if __name__ == "__main__":
     # run_dev_unit_test()  # it generates output.png + all unit tests
 
@@ -29,4 +35,5 @@ if __name__ == "__main__":
     g.addEdge("E", "F", 1.0)
 
     # run_user_test(g)
-    run_prim_test(g)
+    # run_prim_test(g)
+    run_kruskal_test(g)
