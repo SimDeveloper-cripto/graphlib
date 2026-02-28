@@ -5,6 +5,8 @@ from .visualizer import visualizeState
 
 
 # TODO [DIJKSTRA]: USE FIBONACCI HEAP INSTEAD OF MIN-HEAP
+# TODO [PRIM]    : TEST PRIM
+# TODO [KRUSKAL] : TEST KRUSKAL
 
 # NON-ORIENTED WEIGHTED GRAPH IMPLEMENTED BY MATRIX
 # To explain the value of the cell indexed by (node1, node2): (0, 0) --> NO CONNECTION, (1, x > 0) --> CONNECTION
@@ -227,5 +229,45 @@ class Graph:
             current = prev[current]
         return path if dist[destination] != float('inf') else None
 
-    def showVisualization(self):
-        visualizeState(self)
+    def prim(self, start_node=None):
+        """
+        Returns list of tuple (u, v, weight)
+        """
+        if not self.__nodes:
+            return []
+        
+        if start_node is None:
+            start_node = self.__nodes[0]
+        elif start_node not in self.__nodes:
+            raise ValueError("Start node not found in the graph")
+
+        visited     = set([start_node])
+        min_heap    = []
+        mst_edges   = []
+        start_index = self.__nodes.index(start_node)
+
+        for i, (connected, weight) in enumerate(self.__matrix[start_index]):
+            if connected:
+                heapq.heappush(min_heap, (weight, start_node, self.__nodes[i]))
+        
+        while min_heap and len(visited) < len(self.__nodes):
+            weight, u, v = heapq.heappop(min_heap)
+
+            if v in visited: continue
+
+            visited.add(v)
+            mst_edges.append((u, v, weight))
+
+            v_index = self.__nodes.index(v)        
+            for i, (connected, weight) in enumerate(self.__matrix[v_index]):
+                neighbor = self.__nodes[i]
+                if connected and neighbor not in visited:
+                    heapq.heappush(min_heap, (weight, v, neighbor))
+        
+        return mst_edges
+
+    def kruskal(self):
+        pass
+
+    def showVisualization(self, path=None, edges=None):
+        visualizeState(self, path, edges)

@@ -45,5 +45,11 @@ class UndirectedGraph:
     def dijkstra(self, start_node, end_node):
         return self.__graph.dijkstra(start_node, end_node)
 
-    def show(self):
-        self.__graph.showVisualization()
+    def prim(self, start_node):
+        return self.__graph.prim(start_node)
+    
+    def kruskal(self):
+        pass
+
+    def show(self, path=None, edges=None):
+        self.__graph.showVisualization(path, edges)

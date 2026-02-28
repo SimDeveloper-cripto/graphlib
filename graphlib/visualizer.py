@@ -6,7 +6,7 @@ import multiprocessing
 from .color import Color
 
 
-def __visualize(graph):
+def __visualize(graph, path=None, edges=None):
     system = platform.system()
 
     # USING NETWORKX API
@@ -32,10 +32,40 @@ def __visualize(graph):
         Color.GRAY:  'black',
         Color.BLACK: 'white'
     }
-    edge_color = 'gray'
-
     node_colors = [color_map[graph.getCurrentStateOfColors()[node]] for node in node_list]
     font_colors = [b_f_color_map[graph.getCurrentStateOfColors()[node]] for node in node_list]
+
+    edge_colors = []
+    edges_to_highlight = set()
+    nodes_to_highlight = set()
+
+    if path:
+        for i in range(len(path) - 1):
+            u = path[i]
+            v = path[i + 1]
+            edges_to_highlight.add((u, v))
+            edges_to_highlight.add((v, u))
+        nodes_to_highlight.update(path)
+
+    if edges:
+        for edge in edges:
+            u, v = edge[0], edge[1]
+            edges_to_highlight.add((u, v))
+            edges_to_highlight.add((v, u))
+            nodes_to_highlight.add(u)
+            nodes_to_highlight.add(v)
+
+    if nodes_to_highlight:
+        for i, node in enumerate(node_list):
+            if node in nodes_to_highlight:
+                node_colors[i] = '#ff7f0e'  # Orange highlight
+                font_colors[i] = 'white'
+
+    for u, v in g.edges():
+        if (u, v) in edges_to_highlight or (v, u) in edges_to_highlight:
+            edge_colors.append('#d62728')  # Red highlight for edges
+        else:
+            edge_colors.append('gray')
 
     # DRAW USING __Matplotlib__
     pos = nx.circular_layout(g, scale=0.05)
@@ -49,11 +79,12 @@ def __visualize(graph):
         pos,
         with_labels = True,
         node_color  = node_colors,
-        edge_color  = edge_color,
+        edge_color  = edge_colors,
+        width       = [2.0 if c == '#d62728' else 1.0 for c in edge_colors],
         node_size   = 1000,
         font_size   = 10,
         font_weight = 'bold',
-        edgecolors = font_colors
+        edgecolors  = font_colors
     )
 
     edge_labels = nx.get_edge_attributes(g, 'weight')
@@ -78,6 +109,6 @@ def __visualize(graph):
         plt.tight_layout()
         plt.show()
 
-def visualizeState(graph):
-    process = multiprocessing.Process(target=__visualize, args=(graph,))
+def visualizeState(graph, path=None, edges=None):
+    process = multiprocessing.Process(target=__visualize, args=(graph, path, edges))
     process.start()
